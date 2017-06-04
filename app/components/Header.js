@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {View, Text, Platform, PixelRatio, StyleSheet, TouchableOpacity} from 'react-native'
 import colors from '../config/colors'
+import fonts from '../config/fonts'
 
 const APPBAR_HEIGHT = Platform.OS === 'ios' ? 44 : 56
 const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : 0
@@ -16,7 +17,7 @@ export default class Header extends React.Component {
           {left && left}
         </View>
         <View>
-          <Text>{title}</Text>
+          <Text style={styles.title}>{title.toUpperCase()}</Text>
         </View>
         <View style={styles.right}>
           {right && right}
@@ -60,5 +61,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'flex-end',
     justifyContent: 'flex-end'
+  },
+  title: {
+    color: colors.dark,
+    fontFamily: fonts.bold,
+    letterSpacing: 1.5,
+    fontSize: 12
   }
 })

@@ -25,6 +25,7 @@
 		26B4FC6D1EDAECD000C9736C /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 26B4FC6A1EDAECD000C9736C /* OpenSans-Light.ttf */; };
 		26B4FC6E1EDAECD000C9736C /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 26B4FC6B1EDAECD000C9736C /* OpenSans-Regular.ttf */; };
 		26B4FC6F1EDAECD000C9736C /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 26B4FC6C1EDAECD000C9736C /* OpenSans-Semibold.ttf */; };
+		26C9C5651EE279BA00E52D08 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 26C9C5641EE279BA00E52D08 /* SimpleLineIcons.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -256,6 +257,7 @@
 		26B4FC6A1EDAECD000C9736C /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		26B4FC6B1EDAECD000C9736C /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		26B4FC6C1EDAECD000C9736C /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		26C9C5641EE279BA00E52D08 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* Coinbrew-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Coinbrew-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Coinbrew-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Coinbrew-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 		26AF22821EDAE62100864F0E /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				26C9C5641EE279BA00E52D08 /* SimpleLineIcons.ttf */,
 				26B4FC6A1EDAECD000C9736C /* OpenSans-Light.ttf */,
 				26B4FC6B1EDAECD000C9736C /* OpenSans-Regular.ttf */,
 				26B4FC6C1EDAECD000C9736C /* OpenSans-Semibold.ttf */,
@@ -861,6 +864,7 @@
 				26B4FC6E1EDAECD000C9736C /* OpenSans-Regular.ttf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				26B4FC6F1EDAECD000C9736C /* OpenSans-Semibold.ttf in Resources */,
+				26C9C5651EE279BA00E52D08 /* SimpleLineIcons.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

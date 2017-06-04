@@ -10,7 +10,7 @@ import fonts from '../config/fonts'
 
 class DateSeparator extends React.Component {
   render() {
-    return <Text style={styles.date}>{this.props.date}</Text>
+    return <Text style={styles.date}>{this.props.date.toUpperCase()}</Text>
   }
 }
 
