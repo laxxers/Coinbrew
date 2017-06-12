@@ -8,6 +8,7 @@ import {
   TextInput,
   StyleSheet
 } from 'react-native'
+import moment from 'moment'
 import Input from './Input'
 import Header from './Header'
 import Tile from './Tile'
@@ -23,7 +24,9 @@ class ExpenseModal extends React.Component {
     this.state = {
       selectedCategory: {},
       selectedIndex: 100,
-      amount: '0'
+      amount: '0',
+      description: '',
+      date: moment.utc().toISOString()
     }
   }
 
@@ -42,6 +45,16 @@ class ExpenseModal extends React.Component {
     })
 
     this.props.onClose()
+  }
+
+  _handleSaveExpense = () => {
+    this.props.addExpense({
+      amount: Number(this.state.amount),
+      category: this.state.selectedCategory.name,
+      description: this.state.description
+    })
+
+    this._handleModalClose()
   }
 
   _handleAmountOnChange = (amount) => {
@@ -78,7 +91,7 @@ class ExpenseModal extends React.Component {
           right={
             <TouchableOpacity
               activeOpacity={0.8}
-              onPress={() => this.props.onClose()}
+              onPress={() => this._handleSaveExpense()}
             >
               <Text style={styles.rightButton}>SAVE</Text>
             </TouchableOpacity>
@@ -127,7 +140,7 @@ class ExpenseModal extends React.Component {
                     category={category}
                     index={key}
                     key={key}
-                    selected={this.state.selectedIndex == key}
+                    selected={this.state.selectedIndex === key}
                     onPress={() => this._handleTileClick(key)}
                   />
                 )

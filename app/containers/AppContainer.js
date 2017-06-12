@@ -1,21 +1,21 @@
 import React, { Component } from 'react'
 import {
-  AppRegistry,
   StyleSheet,
-  Text,
   View,
   ScrollView,
   Dimensions,
   TouchableOpacity,
-  PixelRatio
+  ActivityIndicator
 } from 'react-native'
-import {connect} from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import Header from '../components/Header'
 import DateSeparator from '../components/DateSeparator'
 import Expense from '../components/Expense'
 import ExpenseModal from '../components/ExpenseModal'
 import colors from '../config/colors'
+import * as ActionCreators from '../actions'
 
 const {height, width} = Dimensions.get('window')
 
@@ -28,8 +28,16 @@ class App extends Component {
       isOpen: false,
       initialY: 0
     }
+  }
 
-    console.log(this.props)
+  componentWillMount() {
+    const {fetchExpenses} = this.props
+
+    fetchExpenses()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps)
   }
 
   _onScroll = (event) => {
@@ -40,6 +48,8 @@ class App extends Component {
   }
 
   render() {
+    const {addExpense, expenses, feeds, isFetching} = this.props
+
     return (
       <View style={styles.container}>
         <Header
@@ -66,17 +76,36 @@ class App extends Component {
           <View style={{backgroundColor: colors.white, height: height / 3}}>
           </View>
           <View style={{padding: 20, backgroundColor: colors.light}}>
-            <DateSeparator
-              date="17 February"
-            />
-            <View style={{flex: 1, paddingTop: 10, paddingBottom: 10}}>
-              <Expense category="Groceries" amount="$100" icon="basket" description="Bacon and cheese at B.E.N"/>
-              <Expense category="Petrol" amount="$200.90" icon="ghost"/>
-              <Expense category="Food" amount="$100" icon="fire"/>
-            </View>
+            {
+              feeds.map((feed, parent) => {
+                return (
+                  <View
+                    key={parent}
+                  >
+                    <DateSeparator
+                      date={feed.day}
+                    />
+                    <View style={{flex: 1, paddingTop: 10, paddingBottom: 10}}>
+                      {
+                        feed.items.map((item, child) =>
+                          <Expense
+                            key={child}
+                            category={item.category}
+                            amount={item.amount}
+                            description={item.description}
+                          />
+                        )
+                      }
+                    </View>
+                  </View>
+                )
+              })
+            }
+            { isFetching && <ActivityIndicator/>}
           </View>
         </ScrollView>
         <ExpenseModal
+          addExpense={(expense) => addExpense(expense)}
           isOpen={this.state.isOpen}
           onClose={() => this.setState({isOpen: false})}
         />
@@ -92,11 +121,12 @@ const styles = StyleSheet.create({
   }
 })
 
-
 const mapStateToProps = (state, props) => ({
-  expenses: state.expenses
+  ...state.expenses
 })
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = (dispatch) => ({
+  ...bindActionCreators(ActionCreators, dispatch)
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

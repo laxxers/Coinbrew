@@ -1,16 +1,18 @@
 import React from 'react'
 import {PropTypes} from 'prop-types'
 import {
-  View,
   Text,
   StyleSheet
 } from 'react-native'
+import moment from 'moment'
 import colors from '../config/colors'
 import fonts from '../config/fonts'
 
 class DateSeparator extends React.Component {
   render() {
-    return <Text style={styles.date}>{this.props.date.toUpperCase()}</Text>
+    const {date} = this.props
+
+    return <Text style={styles.date}>{moment(date).format('D MMMM').toUpperCase()}</Text>
   }
 }
 

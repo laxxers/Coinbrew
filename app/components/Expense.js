@@ -5,27 +5,38 @@ import {
   Text,
   StyleSheet
 } from 'react-native'
+import _ from 'lodash'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
+import categories from '../config/categories'
 import colors from '../config/colors'
 import fonts from '../config/fonts'
 
 class Expense extends React.Component {
+
+  _getIcon = (name) => {
+    const category = _.find(categories, {name})
+    const icon = category ? category.icon : 'shield'
+
+    return icon
+  }
+
   render() {
-    const {icon, category, description, amount} = this.props
+    const {category, description, amount} = this.props
+
     return <View style={styles.container}>
       <View style={styles.left}>
         <SimpleLineIcons
-          name={icon}
+          name={this._getIcon(category)}
           size={20}
           style={{color: colors.dark}}
         />
       </View>
       <View style={styles.wrapper}>
-        <Text style={styles.category}>{category}</Text>
-        { description && <Text style={styles.sub}>{description}</Text> }
+        <Text style={styles.category}>{_.capitalize(category)}</Text>
+        { description && <Text style={styles.sub}>{_.capitalize(description)}</Text> }
       </View>
       <View style={styles.right}>
-        <Text style={styles.amount}>{amount}</Text>
+        <Text style={styles.amount}>${amount}</Text>
       </View>
     </View>
   }
@@ -33,8 +44,7 @@ class Expense extends React.Component {
 
 Expense.propTypes = {
   category: PropTypes.string.isRequired,
-  amount: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
+  amount: PropTypes.number.isRequired,
   description: PropTypes.string
 }
 
