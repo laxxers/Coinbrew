@@ -24,19 +24,21 @@ const feedify = (expenses) => {
 
 export default function expenses(state = initialState, action) {
   switch (action.type) {
-    case REQUEST_EXPENSES:
+    case REQUEST_EXPENSES: {
       return Object.assign({}, state, {
         isFetching: true
       })
+    }
 
-    case RECEIVE_EXPENSES:
+    case RECEIVE_EXPENSES: {
       return Object.assign({}, state, {
         isFetching: false,
         expenses: [...state.expenses, ...action.expenses],
         feeds: feedify([...state.expenses, ...action.expenses])
       })
+    }
 
-    case ADD_EXPENSE:
+    case ADD_EXPENSE: {
       const expenses = [
         ...state.expenses,
         {
@@ -52,20 +54,24 @@ export default function expenses(state = initialState, action) {
         expenses,
         feeds: feedify(expenses),
       })
+    }
 
-    case DELETE_EXPENSE:
+    case DELETE_EXPENSE: {
       return state.filter(expense =>
         expense.id !== action.id
       )
+    }
 
-    case EDIT_EXPENSE:
+    case EDIT_EXPENSE: {
       return state.map(expense =>
         expense.id === action.id ?
-        { ...expense, text: action.text } :
+          { ...expense, text: action.text } :
           expense
       )
+    }
 
-    default:
+    default: {
       return state
+    }
   }
 }
