@@ -5,7 +5,8 @@ import {
   ScrollView,
   Dimensions,
   TouchableOpacity,
-  ActivityIndicator
+  ActivityIndicator,
+  Text
 } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -14,7 +15,10 @@ import Header from '../components/Header'
 import DateSeparator from '../components/DateSeparator'
 import Expense from '../components/Expense'
 import ExpenseModal from '../components/ExpenseModal'
+import Bar from '../components/Bar'
+import Stat from '../components/Stat'
 import colors from '../config/colors'
+import fonts from '../config/fonts'
 import * as ActionCreators from '../actions'
 
 const {height, width} = Dimensions.get('window')
@@ -73,8 +77,52 @@ class App extends Component {
           scrollEventThrottle={16}
           onScroll={(event) => this._onScroll(event)}
         >
-          <View style={{backgroundColor: colors.white, height: height / 3}}>
+          <View style={{backgroundColor: colors.white, flex: 1, padding: 20, flexDirection: 'column', alignItems: 'center'}}>
+            <View style={{flexDirection: 'row', flex: 1, justifyContent: 'center'}}>
+              <Bar
+                label="M"
+                height={78}
+              />
+              <Bar
+                label="T"
+                height={10}
+              />
+              <Bar
+                label="W"
+                height={50}
+              />
+              <Bar
+                label="T"
+                height={34}
+              />
+              <Bar
+                label="F"
+                height={55}
+              />
+              <Bar
+                label="S"
+                height={0}
+              />
+              <Bar
+                label="S"
+                height={12}
+              />
+
+            </View>
+
+            <View style={{flexDirection: 'row', flex: 1, width: '100%', justifyContent: 'space-around', marginTop: 15}}>
+              <Stat
+                main="$2000"
+                sub="weekly total"
+              />
+              <Stat
+                main="$18.10"
+                sub="average / day"
+              />
+            </View>
+
           </View>
+
           <View style={{padding: 20, backgroundColor: colors.light}}>
             {
               feeds.map((feed, parent) => {
@@ -101,7 +149,7 @@ class App extends Component {
                 )
               })
             }
-            { isFetching && <ActivityIndicator/>}
+            { isFetching && <ActivityIndicator/> }
           </View>
         </ScrollView>
         <ExpenseModal
